@@ -62,7 +62,7 @@ paths:
   
     
   /loan/rollover/{loanid}:
-    post:
+    put:
       description: Simple rollover for a loan on the same conditions
       parameters:
         - name: loanid
@@ -119,31 +119,27 @@ paths:
     post:
       description: Initiate a credit transfer
       parameters:
-        - name: account_number
-          in: query
-          type: string
-          required: true
-          description: the originating account number 
-        - name: benificiary
-          in: query
-          type: string
-          required: true
-          description: the benificiary account number
-        - name: currency
-          in: query
-          type: string
-          required: true
-          description: currency of the payment transfer
-        - name: amount
-          in: query
-          type: number
-          required: true
-          description: the amount of the credit transfer
-        - name: urgent
-          in: query
-          type: boolean
-          required: false
-          description: set to true for urgent payment
+        - in: body
+          name: credit_transfer
+          schema:
+            type: object
+            required: 
+              - account
+              - benificiary
+              - currency
+              - amount
+            properties:
+              account: 
+                type: string
+              benificiary:
+                type: string
+              currency:
+                type: string
+              amount:
+                type: number
+              urgent:
+                type: boolean
+          
       responses:
         200:
           description: returns the status of the credit transfer
