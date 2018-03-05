@@ -62,7 +62,7 @@ paths:
   
     
   /loan/rollover/{loanid}:
-    put:
+    post:
       description: Simple rollover for a loan on the same conditions
       parameters:
         - name: loanid
