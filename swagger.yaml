@@ -5,8 +5,8 @@ info:
   description: Below you will find the different APIs provided by "Core", as a simplified example. Please be aware a valid API-Key and matching GCID is required for all request! 
   
 security:
-  - ApiKeyAuth: ["abc"]
-    GCID: ["def"]
+  - ApiKeyAuth: []
+    GCID: []
       
 
 paths:
