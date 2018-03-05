@@ -2,7 +2,7 @@ swagger: "2.0"
 info:
   version: "1.0"
   title: "Core APIs"
-  description: Below you will find the different APIs provided by "Core"
+  description: Below you will find the different APIs provided by "Core". Please be aware a valid API-Key and matching GCID is required for all request! 
   
 security:
   - ApiKeyAuth: []
