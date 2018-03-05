@@ -1,25 +1,23 @@
 swagger: "2.0"
 info:
   version: "1.0"
-  title: "Core APIs"
-  description: Below you will find the different APIs provided by "Core". Please be aware a valid API-Key and matching GCID is required for all request! 
+  title: "Core APIs (Example)"
+  description: Below you will find the different APIs provided by "Core", as a simplified example. Please be aware a valid API-Key and matching GCID is required for all request! 
   
 security:
-  - ApiKeyAuth: []
-    GCID: []
+  - ApiKeyAuth: ["abc"]
+    GCID: ["def"]
       
 
 paths:
   /loan:
     get:
-      description: get a list of all active Loan IDs for a specified Global Client ID from the Authentication Header
+      description: Get a list of all active Loan IDs for a specified Global Client ID from the Authentication Header
       responses:
         200:
-          description: Returns a list of all Loan IDs for "gcid"
+          description: Returns a list of all Loan IDs for "GCID"
           schema:
             type: array
-        400:
-          description: Invalid characters in "gcid" were provided.
         401:
           $ref: "#/responses/UnauthorizedError"
   
@@ -32,7 +30,7 @@ paths:
           in: path
           type: string
           required: true
-          description: Loan ID ID for which to request the Loan data
+          description: Loan ID for which to request the Loan data
       responses:
         200:
           description: id, amount, principal, maturity date, interest and currency of a specific Loan
@@ -98,7 +96,7 @@ paths:
                 type: number
                 description: the interest rate used for the loan
         400:
-          description: Invalid characters in "gcid" were provided.
+          description: Invalid characters in "loanid" were provided.
         401:
           $ref: "#/responses/UnauthorizedError"
 
@@ -113,7 +111,7 @@ paths:
             type: array
             description: an list of all active accounts for "gcid"
         400:
-          description: Invalid charactrers in "gcid" were provided.
+          description: Invalid characters in "gcid" were provided.
         401:
           $ref: "#/responses/UnauthorizedError"
          
@@ -141,6 +139,11 @@ paths:
           type: number
           required: true
           description: the amount of the credit transfer
+        - name: urgent
+          in: query
+          type: boolean
+          required: false
+          description: set to true for urgent payment
       responses:
         200:
           description: returns the status of the credit transfer
